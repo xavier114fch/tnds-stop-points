@@ -13,21 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo a
-        uses: actions/checkout@v4
-
-      - name: Checkout gh-pages branch of uk-open-bus-data
-        uses: actions/checkout@v4
+      - name: Checkout gh-pages branch of uk-bus-open-data
+        uses: actions/checkout@v6
         with:
-          repository: xavier114fch/uk-open-bus-data
+          repository: xavier114fch/uk-bus-open-data
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           ref: gh-pages
-          path: uk-open-bus-data
+          path: uk-bus-open-data
       
       - name: Copy TNDS stopPoints data only
         run: |
           mkdir -p stops
-          cp -r uk-open-bus-data/data/tnds/stopPoints stops/
+          cp -r uk-bus-open-data/data/tnds/stopPoints stops/
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v4
