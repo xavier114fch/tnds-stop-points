@@ -1,0 +1,34 @@
+name: Deploy TNDS stopPoints to GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo a
+        uses: actions/checkout@v4
+
+      - name: Clone external naptan repo (gh-pages branch)
+        run: |
+          git clone --branch gh-pages --single-branch https://github.com/xavier114fch/uk-open-bus-data.git data
+
+      - name: Copy TNDS stopPoints data only
+        run: |
+          mkdir -p data
+          cp -r external-naptan/data/tnds/stopPoints data/
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: data
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
