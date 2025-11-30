@@ -16,10 +16,14 @@ jobs:
       - name: Checkout repo a
         uses: actions/checkout@v4
 
-      - name: Clone external naptan repo (gh-pages branch)
-        run: |
-          git clone --branch gh-pages --single-branch https://github.com/xavier114fch/uk-open-bus-data.git uk-open-bus-data
-
+      - name: Checkout gh-pages branch of uk-open-bus-data
+        uses: actions/checkout@v4
+        with:
+          repository: xavier114fch/uk-open-bus-data
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          ref: gh-pages
+          path: uk-open-bus-data
+      
       - name: Copy TNDS stopPoints data only
         run: |
           mkdir -p stops
