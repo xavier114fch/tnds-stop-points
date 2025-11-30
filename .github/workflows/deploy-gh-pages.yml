@@ -18,17 +18,17 @@ jobs:
 
       - name: Clone external naptan repo (gh-pages branch)
         run: |
-          git clone --branch gh-pages --single-branch https://github.com/xavier114fch/uk-open-bus-data.git data
+          git clone --branch gh-pages --single-branch https://github.com/xavier114fch/uk-open-bus-data.git uk-open-bus-data
 
       - name: Copy TNDS stopPoints data only
         run: |
-          mkdir -p data
-          cp -r external-naptan/data/tnds/stopPoints data/
+          mkdir -p stops
+          cp -r uk-open-bus-data/data/tnds/stopPoints stops/
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v4
         with:
-          path: data
+          path: stops
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
