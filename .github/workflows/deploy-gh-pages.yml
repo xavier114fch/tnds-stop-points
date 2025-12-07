@@ -29,6 +29,7 @@ jobs:
           cp -r uk-bus-open-data/data/tnds/stopPoints/ stops/
           cp uk-bus-open-data/data/tnds/all_stop_points.json stops/stopPoints
           cp uk-bus-open-data/data/tnds/stops_tnds_only.json stops/stopPoints
+          rm -rf uk-bus-open-data
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v4
